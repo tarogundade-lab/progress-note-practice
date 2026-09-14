@@ -2,104 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress Note Practice</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Clinical Documentation Lab | Remote Social Work Mastery</title>
 
   <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
       margin: 0;
-      color: #333;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      color: #24313f;
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+      width: min(1000px, 92%);
+      margin: auto;
     }
 
-    .header {
-      background: #1f3c88;
+    /* HEADER */
+
+    header {
+      background: linear-gradient(135deg, #173f5f, #20639b);
       color: white;
-      padding: 30px;
-      border-radius: 12px;
-      margin-bottom: 20px;
+      padding: 55px 20px;
+      text-align: center;
     }
 
-    .header h1 {
-      margin-top: 0;
+    header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* PROGRESS BAR */
+
+    .progress-wrapper {
+      background: white;
+      padding: 18px 0;
+      border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .progress-container {
+      width: min(1000px, 92%);
+      margin: auto;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: #555;
+    }
+
+    .progress-bar {
+      height: 10px;
+      background: #e2e7eb;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #2e7d32;
+      transition: width 0.4s ease;
+    }
+
+    /* SECTIONS */
+
+    main {
+      padding: 40px 0 70px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
     }
 
     .card {
       background: white;
-      padding: 25px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
     }
 
-    .client-info {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
+    .card h2 {
+      margin-top: 0;
+      color: #173f5f;
     }
 
-    .info-box {
-      background: #f1f4f9;
-      padding: 15px;
-      border-radius: 8px;
+    .intro-card {
+      text-align: center;
+      padding: 55px 30px;
     }
 
-    .scenario {
-      line-height: 1.7;
-      background: #fff8e6;
-      padding: 20px;
-      border-left: 5px solid #f0b429;
-      border-radius: 6px;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 300px;
-      padding: 15px;
-      font-size: 16px;
-      line-height: 1.6;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-sizing: border-box;
-      resize: vertical;
-    }
-
-    .instructions li {
-      margin-bottom: 10px;
-    }
-
-    .counter {
-      text-align: right;
-      color: #666;
-      margin-top: 5px;
-      font-size: 14px;
-    }
+    /* BUTTONS */
 
     button {
       border: none;
-      padding: 12px 18px;
-      border-radius: 7px;
+      border-radius: 8px;
+      padding: 13px 20px;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 15px;
-      margin-right: 8px;
-      margin-top: 10px;
+      margin: 5px;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      opacity: 0.95;
     }
 
     .primary {
-      background: #1f3c88;
+      background: #173f5f;
       color: white;
-    }
-
-    .secondary {
-      background: #ddd;
-      color: #333;
     }
 
     .success {
@@ -107,209 +146,255 @@
       color: white;
     }
 
-    .sample {
-      display: none;
-      background: #eef7ee;
+    .secondary {
+      background: #e4e8ec;
+      color: #24313f;
+    }
+
+    .danger {
+      background: #b23a48;
+      color: white;
+    }
+
+    /* INFO BOXES */
+
+    .info-box {
+      background: #eef4f8;
+      border-left: 5px solid #20639b;
+      padding: 18px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .warning-box {
+      background: #fff7e6;
+      border-left: 5px solid #e5a100;
+      padding: 18px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .success-box {
+      background: #eef8ef;
       border-left: 5px solid #2e7d32;
+      padding: 18px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    /* CLIENT INFO */
+
+    .client-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .client-item {
+      background: #f1f4f7;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    /* PRACTICE 1 */
+
+    .statement {
+      border: 1px solid #d8dee4;
       padding: 20px;
-      line-height: 1.7;
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+
+    .statement p {
+      font-size: 1.05rem;
+      margin-top: 0;
+    }
+
+    .choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .choice {
+      background: #edf1f5;
+      color: #24313f;
+    }
+
+    .choice.selected {
+      background: #173f5f;
+      color: white;
+    }
+
+    /* TEXTAREAS */
+
+    textarea {
+      width: 100%;
+      min-height: 280px;
+      padding: 16px;
+      border: 1px solid #ccd5dd;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.6;
+      resize: vertical;
+    }
+
+    .counter {
+      text-align: right;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 6px;
+    }
+
+    /* QA */
+
+    .bad-note {
+      background: #fff3f3;
+      border-left: 5px solid #b23a48;
+      padding: 20px;
+      border-radius: 8px;
+      font-style: italic;
+      font-size: 1.05rem;
+    }
+
+    .checkbox-option {
+      display: block;
+      padding: 14px;
+      margin: 8px 0;
+      background: #f5f7f9;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .checkbox-option:hover {
+      background: #edf2f6;
+    }
+
+    /* FEEDBACK */
+
+    .feedback {
+      display: none;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .correct {
+      background: #eaf7ec;
+      border-left: 5px solid #2e7d32;
+    }
+
+    .incorrect {
+      background: #fff0f0;
+      border-left: 5px solid #b23a48;
+    }
+
+    /* SCORE */
+
+    .score-circle {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: #173f5f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 25px auto;
+    }
+
+    .score-number {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
       margin-top: 20px;
     }
 
-    .warning {
-      color: #9a6700;
-      font-size: 14px;
+    .score-table th,
+    .score-table td {
+      padding: 14px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
     }
+
+    .score-table th:last-child,
+    .score-table td:last-child {
+      text-align: right;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #173f5f;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    /* MOBILE */
 
     @media (max-width: 600px) {
-      .client-info {
-        grid-template-columns: 1fr;
+
+      .card {
+        padding: 20px;
       }
 
-      .container {
-        margin: 10px auto;
+      button {
+        width: 100%;
+        margin: 5px 0;
       }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-<div class="container">
+<header>
 
-  <div class="header">
-    <h1>Progress Note Practice</h1>
-    <p>Remote Social Work Documentation Exercise</p>
-  </div>
+  <h1>Clinical Documentation Lab</h1>
 
-  <!-- CLIENT INFORMATION -->
-  <div class="card">
-    <h2>1. Client Information</h2>
+  <p>
+    Remote Social Work Mastery
+  </p>
 
-    <div class="client-info">
+</header>
 
-      <div class="info-box">
-        <strong>Client:</strong><br>
-        Jane A.
-      </div>
 
-      <div class="info-box">
-        <strong>Age:</strong><br>
-        29
-      </div>
+<div class="progress-wrapper">
 
-      <div class="info-box">
-        <strong>Service:</strong><br>
-        Individual Counseling
-      </div>
+  <div class="progress-container">
 
-      <div class="info-box">
-        <strong>Session:</strong><br>
-        Follow-up Session
-      </div>
+    <div class="progress-label">
 
-      <div class="info-box">
-        <strong>Format:</strong><br>
-        Telehealth
-      </div>
+      <span id="progressText">
+        Welcome
+      </span>
 
-      <div class="info-box">
-        <strong>Duration:</strong><br>
-        45 minutes
-      </div>
+      <span id="progressPercent">
+        0%
+      </span>
 
     </div>
-  </div>
 
+    <div class="progress-bar">
 
-  <!-- SCENARIO -->
-  <div class="card">
-    <h2>2. Session Scenario</h2>
-
-    <div class="scenario">
-
-      <p>
-        Jane attended her scheduled 45-minute telehealth session.
-        She reported feeling "overwhelmed" during the past week because
-        of increased responsibilities at work and difficulty balancing
-        work and family responsibilities.
-      </p>
-
-      <p>
-        Jane reported that she has been sleeping approximately 5–6 hours
-        per night and has noticed difficulty concentrating at work.
-        She stated that she has been using deep breathing techniques
-        discussed during the previous session and found them somewhat helpful.
-      </p>
-
-      <p>
-        During the session, the social worker explored Jane's current
-        stressors and discussed time-management strategies. The social
-        worker also reviewed coping skills and encouraged Jane to continue
-        practicing deep breathing exercises.
-      </p>
-
-      <p>
-        Jane was engaged throughout the session and demonstrated an
-        understanding of the strategies discussed. She agreed to identify
-        two manageable tasks each day and practice deep breathing at least
-        once daily before the next session.
-      </p>
-
-    </div>
-  </div>
-
-
-  <!-- INSTRUCTIONS -->
-  <div class="card instructions">
-
-    <h2>3. Your Assignment</h2>
-
-    <p>
-      Using the information provided above, write a professional
-      progress note.
-    </p>
-
-    <h3>Remember:</h3>
-
-    <ul>
-      <li>Document objectively and professionally.</li>
-      <li>Separate client statements from your observations.</li>
-      <li>Focus on clinically relevant information.</li>
-      <li>Avoid unnecessary personal details.</li>
-      <li>Document interventions provided.</li>
-      <li>Document the client's response to the intervention.</li>
-      <li>Include the plan or next steps.</li>
-      <li>Do not add information that is not included in the scenario.</li>
-    </ul>
-
-    <p class="warning">
-      ⚠️ Practice exercise: Do not include identifying information
-      about real clients in this activity.
-    </p>
-
-  </div>
-
-
-  <!-- NOTE WRITING -->
-  <div class="card">
-
-    <h2>4. Write Your Progress Note</h2>
-
-    <p>
-      You may use either <strong>DAP</strong> or <strong>SOAP</strong>
-      format.
-    </p>
-
-    <textarea
-      id="progressNote"
-      placeholder="Begin writing your progress note here...">
-    </textarea>
-
-    <div class="counter">
-      Words: <span id="wordCount">0</span>
-    </div>
-
-    <button class="primary" onclick="downloadNote()">
-      Download My Note
-    </button>
-
-    <button class="secondary" onclick="clearNote()">
-      Clear
-    </button>
-
-    <button class="success" onclick="showSample()">
-      Show Sample Answer
-    </button>
-
-    <div id="sampleAnswer" class="sample">
-
-      <h3>Sample Progress Note – DAP Format</h3>
-
-      <p>
-        <strong>Data:</strong> Client attended scheduled 45-minute
-        telehealth session. Client reported feeling overwhelmed due to
-        increased work responsibilities and difficulty balancing work
-        and family responsibilities. Client reported sleeping
-        approximately 5–6 hours per night and experiencing difficulty
-        concentrating at work. Client reported using previously discussed
-        deep breathing techniques and finding them somewhat helpful.
-      </p>
-
-      <p>
-        <strong>Assessment:</strong> Client presented as engaged throughout
-        the session and demonstrated understanding of strategies discussed.
-        Client continues to experience stress related to work and family
-        responsibilities.
-      </p>
-
-      <p>
-        <strong>Plan:</strong> Social worker reviewed coping skills and
-        discussed time-management strategies. Client agreed to identify
-        two manageable tasks each day and practice deep breathing at least
-        once daily before the next session. Continue to monitor reported
-        stress and functioning at follow-up.
-      </p>
+      <div
+        class="progress-fill"
+        id="progressFill"
+      ></div>
 
     </div>
 
@@ -318,107 +403,1970 @@
 </div>
 
 
+<main class="container">
+
+
+  <!-- ========================= -->
+  <!-- WELCOME -->
+  <!-- ========================= -->
+
+  <section
+    class="page active"
+    id="welcome"
+  >
+
+    <div class="card intro-card">
+
+      <h2>
+        Welcome to the Clinical Documentation Lab
+      </h2>
+
+      <p>
+        This interactive simulation will help you practice
+        identifying relevant information, writing professional
+        progress notes, reviewing documentation for quality,
+        and correcting common documentation errors.
+      </p>
+
+      <div class="warning-box">
+
+        <strong>Training Exercise Only</strong>
+
+        <p>
+          All clients and scenarios in this activity are fictional.
+          Do not enter identifying information about real clients.
+        </p>
+
+      </div>
+
+      <button
+        class="primary"
+        onclick="showPage('instructions')"
+      >
+        Start the Lab →
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- INSTRUCTIONS -->
+  <!-- ========================= -->
+
+  <section
+    class="page"
+    id="instructions"
+  >
+
+    <div class="card">
+
+      <h2>
+        Before You Begin
+      </h2>
+
+      <p>
+        Strong clinical documentation should be:
+      </p>
+
+      <ul>
+
+        <li>
+          <strong>Objective</strong> — document observable facts
+          and relevant client statements.
+        </li>
+
+        <li>
+          <strong>Relevant</strong> — include information connected
+          to the service provided.
+        </li>
+
+        <li>
+          <strong>Clear</strong> — another professional should be
+          able to understand what occurred.
+        </li>
+
+        <li>
+          <strong>Accurate</strong> — do not add information that
+          was not provided or observed.
+        </li>
+
+        <li>
+          <strong>Complete</strong> — document interventions,
+          client response, and the plan when applicable.
+        </li>
+
+      </ul>
+
+      <div class="info-box">
+
+        <strong>You will complete:</strong>
+
+        <ol>
+
+          <li>Identify relevant documentation information</li>
+
+          <li>Write a progress note</li>
+
+          <li>Review a note for QA issues</li>
+
+          <li>Correct a poorly written note</li>
+
+          <li>Complete a final documentation challenge</li>
+
+        </ol>
+
+      </div>
+
+      <button
+        class="primary"
+        onclick="showPage('practice1')"
+      >
+        Begin Practice 1 →
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- PRACTICE 1 -->
+  <!-- ========================= -->
+
+  <section
+    class="page"
+    id="practice1"
+  >
+
+    <div class="card">
+
+      <h2>
+        🧠 Practice 1: What Belongs in the Progress Note?
+      </h2>
+
+      <p>
+        For each statement, decide whether the information should be:
+      </p>
+
+      <ul>
+
+        <li>
+          <strong>Include</strong> — relevant information that can
+          be documented.
+        </li>
+
+        <li>
+          <strong>Do Not Include</strong> — unnecessary information.
+        </li>
+
+        <li>
+          <strong>Needs Clarification</strong> — information that
+          may be relevant but is too vague or unsupported as written.
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="statement">
+
+        <p>
+          <strong>1.</strong>
+          The client reported sleeping approximately five hours per
+          night over the past week.
+        </p>
+
+        <div class="choices">
+
+          <button
+            class="choice"
+            data-question="q1"
+            data-answer="include"
+            onclick="selectChoice(this)"
+          >
+            Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q1"
+            data-answer="exclude"
+            onclick="selectChoice(this)"
+          >
+            Do Not Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q1"
+            data-answer="clarify"
+            onclick="selectChoice(this)"
+          >
+            Needs Clarification
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="statement">
+
+        <p>
+          <strong>2.</strong>
+          The client arrived wearing an expensive designer handbag.
+        </p>
+
+        <div class="choices">
+
+          <button
+            class="choice"
+            data-question="q2"
+            data-answer="include"
+            onclick="selectChoice(this)"
+          >
+            Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q2"
+            data-answer="exclude"
+            onclick="selectChoice(this)"
+          >
+            Do Not Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q2"
+            data-answer="clarify"
+            onclick="selectChoice(this)"
+          >
+            Needs Clarification
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="statement">
+
+        <p>
+          <strong>3.</strong>
+          The social worker documented that the client was
+          “clearly depressed” based only on the client appearing quiet.
+        </p>
+
+        <div class="choices">
+
+          <button
+            class="choice"
+            data-question="q3"
+            data-answer="include"
+            onclick="selectChoice(this)"
+          >
+            Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q3"
+            data-answer="exclude"
+            onclick="selectChoice(this)"
+          >
+            Do Not Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q3"
+            data-answer="clarify"
+            onclick="selectChoice(this)"
+          >
+            Needs Clarification
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="statement">
+
+        <p>
+          <strong>4.</strong>
+          The client reported increased stress related to managing
+          work and family responsibilities.
+        </p>
+
+        <div class="choices">
+
+          <button
+            class="choice"
+            data-question="q4"
+            data-answer="include"
+            onclick="selectChoice(this)"
+          >
+            Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q4"
+            data-answer="exclude"
+            onclick="selectChoice(this)"
+          >
+            Do Not Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q4"
+            data-answer="clarify"
+            onclick="selectChoice(this)"
+          >
+            Needs Clarification
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="statement">
+
+        <p>
+          <strong>5.</strong>
+          The client said they are “doing better.”
+        </p>
+
+        <div class="choices">
+
+          <button
+            class="choice"
+            data-question="q5"
+            data-answer="include"
+            onclick="selectChoice(this)"
+          >
+            Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q5"
+            data-answer="exclude"
+            onclick="selectChoice(this)"
+          >
+            Do Not Include
+          </button>
+
+          <button
+            class="choice"
+            data-question="q5"
+            data-answer="clarify"
+            onclick="selectChoice(this)"
+          >
+            Needs Clarification
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="success"
+        onclick="gradePractice1()"
+      >
+        Check My Answers
+      </button>
+
+
+      <div
+        class="feedback"
+        id="practice1Feedback"
+      ></div>
+
+
+      <div id="practice1Next"></div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- PRACTICE 2 -->
+  <!-- ========================= -->
+
+  <section
+    class="page"
+    id="practice2"
+  >
+
+    <div class="card">
+
+      <h2>
+        ✍🏽 Practice 2: Write the Progress Note
+      </h2>
+
+      <div class="client-grid">
+
+        <div class="client-item">
+          <strong>Client</strong><br>
+          Jane A.
+        </div>
+
+        <div class="client-item">
+          <strong>Age</strong><br>
+          29
+        </div>
+
+        <div class="client-item">
+          <strong>Service</strong><br>
+          Individual Counseling
+        </div>
+
+        <div class="client-item">
+          <strong>Format</strong><br>
+          Telehealth
+        </div>
+
+        <div class="client-item">
+          <strong>Duration</strong><br>
+          45 Minutes
+        </div>
+
+        <div class="client-item">
+          <strong>Session</strong><br>
+          Follow-Up
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Session Scenario
+      </h3>
+
+      <div class="info-box">
+
+        <p>
+          Jane attended her scheduled 45-minute telehealth session.
+          She reported feeling “overwhelmed” during the past week
+          because of increased responsibilities at work and difficulty
+          balancing work and family responsibilities.
+        </p>
+
+        <p>
+          Jane reported sleeping approximately 5–6 hours per night and
+          experiencing difficulty concentrating at work. She stated that
+          she has been using deep breathing techniques discussed during
+          the previous session and found them somewhat helpful.
+        </p>
+
+        <p>
+          During the session, the social worker explored Jane's current
+          stressors and discussed time-management strategies. The social
+          worker reviewed coping skills and encouraged continued practice
+          of deep breathing exercises.
+        </p>
+
+        <p>
+          Jane was engaged throughout the session and demonstrated an
+          understanding of the strategies discussed. She agreed to
+          identify two manageable tasks each day and practice deep
+          breathing at least once daily before the next session.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Write Your Progress Note
+      </h3>
+
+      <p>
+        Use either <strong>DAP</strong> or <strong>SOAP</strong>
+        format.
+      </p>
+
+      <textarea
+        id="practice2Note"
+        placeholder="Begin writing your progress note here..."
+      ></textarea>
+
+      <div class="counter">
+
+        Words:
+        <span id="practice2Words">
+          0
+        </span>
+
+      </div>
+
+      <button
+        class="primary"
+        onclick="evaluatePractice2()"
+      >
+        Review My Work
+      </button>
+
+      <button
+        class="secondary"
+        onclick="clearText('practice2Note', 'practice2Words')"
+      >
+        Clear
+      </button>
+
+      <button
+        class="success"
+        onclick="showModelAnswer('practice2Model')"
+      >
+        Show Model Answer
+      </button>
+
+
+      <div
+        class="feedback"
+        id="practice2Feedback"
+      ></div>
+
+
+      <div
+        class="feedback correct"
+        id="practice2Model"
+      >
+
+        <h3>
+          Model Answer — DAP Format
+        </h3>
+
+        <p>
+          <strong>Data:</strong>
+          Client attended scheduled 45-minute telehealth follow-up
+          session. Client reported feeling overwhelmed due to increased
+          work responsibilities and difficulty balancing work and family
+          responsibilities. Client reported sleeping approximately 5–6
+          hours per night and experiencing difficulty concentrating at
+          work. Client reported continued use of previously discussed
+          deep breathing techniques and stated that the technique was
+          somewhat helpful.
+        </p>
+
+        <p>
+          <strong>Assessment:</strong>
+          Client was engaged throughout the session and demonstrated
+          understanding of the coping and time-management strategies
+          discussed. Client continues to report stress associated with
+          work and family responsibilities.
+        </p>
+
+        <p>
+          <strong>Plan:</strong>
+          Social worker explored current stressors, discussed
+          time-management strategies, and reviewed coping skills.
+          Client agreed to identify two manageable tasks daily and
+          practice deep breathing at least once daily before the next
+          session. Continue to monitor reported stress and functioning
+          during follow-up.
+        </p>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="showPage('practice3')"
+      >
+        Continue to QA Challenge →
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- PRACTICE 3 -->
+  <!-- ========================= -->
+
+  <section
+    class="page"
+    id="practice3"
+  >
+
+    <div class="card">
+
+      <h2>
+        🔎 Practice 3: Documentation QA Challenge
+      </h2>
+
+      <p>
+        You are reviewing the following progress note before it is
+        finalized in the record.
+      </p>
+
+      <p>
+        Select <strong>all of the documentation issues</strong>
+        you identify.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="bad-note">
+
+        “Client was really upset today because her boss is terrible.
+        We talked about her problems and I gave her some advice.
+        She seemed better by the end. Hopefully things will improve
+        next week.”
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <label class="checkbox-option">
+
+        <input
+          type="checkbox"
+          value="vague"
+        >
+
+        The note uses vague language.
+
+      </label>
+
+
+      <label class="checkbox-option">
+
+        <input
+          type="checkbox"
+          value="unprofessional"
+        >
+
+        The wording is unprofessional or overly subjective.
+
+      </label>
+
+
+      <label class="checkbox-option">
+
+        <input
+          type="checkbox"
+          value="intervention"
+        >
+
+        The intervention is not clearly documented.
+
+      </label>
+
+
+      <label class="checkbox-option">
+
+        <input
+          type="checkbox"
+          value="response"
+        >
+
+        The client's response is not clearly documented.
+
+      </label>
+
+
+      <label class="checkbox-option">
+
+        <input
+          type="checkbox"
+          value="plan"
+        >
+
+        The plan is weak or missing.
+
+      </label>
+
+
+      <label class="checkbox-option">
+
+        <input
+          type="checkbox"
+          value="perfect"
+        >
+
+        The note is complete and requires no corrections.
+
+      </label>
+
+
+      <button
+        class="success"
+        onclick="gradePractice3()"
+      >
+        Submit QA Review
+      </button>
+
+
+      <div
+        class="feedback"
+        id="practice3Feedback"
+      ></div>
+
+
+      <div id="practice3Next"></div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- PRACTICE 4 -->
+  <!-- ========================= -->
+
+  <section
+    class="page"
+    id="practice4"
+  >
+
+    <div class="card">
+
+      <h2>
+        🛠️ Practice 4: Fix the Note
+      </h2>
+
+      <p>
+        Now act as the documentation specialist.
+      </p>
+
+      <p>
+        Rewrite the note below using objective, professional,
+        clinically relevant language.
+      </p>
+
+      <div class="bad-note">
+
+        “Client was really upset today because her boss is terrible.
+        We talked about her problems and I gave her some advice.
+        She seemed better by the end. Hopefully things will improve
+        next week.”
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <textarea
+        id="practice4Note"
+        placeholder="Rewrite the progress note here..."
+      ></textarea>
+
+      <div class="counter">
+
+        Words:
+        <span id="practice4Words">
+          0
+        </span>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="evaluatePractice4()"
+      >
+        Review My Rewrite
+      </button>
+
+
+      <button
+        class="success"
+        onclick="showModelAnswer('practice4Model')"
+      >
+        Show Example Rewrite
+      </button>
+
+
+      <div
+        class="feedback"
+        id="practice4Feedback"
+      ></div>
+
+
+      <div
+        class="feedback correct"
+        id="practice4Model"
+      >
+
+        <h3>
+          Example Rewrite
+        </h3>
+
+        <p>
+          Client discussed work-related stress during the session and
+          reported difficulty managing interactions with their supervisor.
+          Social worker explored current stressors and provided support
+          while discussing coping strategies and possible approaches to
+          managing workplace-related stress.
+        </p>
+
+        <p>
+          Client was engaged in the discussion and participated in
+          identifying strategies to address reported concerns. Client
+          agreed to continue practicing identified coping strategies
+          and to discuss progress during the next session.
+        </p>
+
+      </div>
+
+
+      <button
+        class="primary"
+        onclick="showPage('finalChallenge')"
+      >
+        Begin Final Challenge →
+      </button>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- FINAL CHALLENGE -->
+  <!-- ========================= -->
+
+  <section
+    class="page"
+    id="finalChallenge"
+  >
+
+    <div class="card">
+
+      <h2>
+        🏆 Final Documentation Challenge
+      </h2>
+
+      <p>
+        You are a remote social worker completing documentation after
+        a follow-up session.
+      </p>
+
+      <p>
+        Review the scenario and write a complete progress note using
+        <strong>DAP or SOAP format.</strong>
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Client Scenario
+      </h3>
+
+      <div class="info-box">
+
+        <p>
+          Marcus B., age 34, attended a scheduled 50-minute video
+          counseling session.
+        </p>
+
+        <p>
+          Client reported increased stress during the past two weeks
+          related to financial responsibilities and difficulty finding
+          time to complete personal tasks. Client stated that he has
+          been feeling “frustrated and mentally tired.”
+        </p>
+
+        <p>
+          Client reported using a written task list on several occasions
+          since the previous session and stated that the strategy helped
+          him feel more organized.
+        </p>
+
+        <p>
+          During the session, the social worker explored current stressors
+          and reviewed prioritization and task-management strategies.
+          The social worker encouraged the client to identify realistic
+          daily goals and continue using the written task list.
+        </p>
+
+        <p>
+          Client participated throughout the session and identified
+          three tasks he plans to prioritize during the upcoming week.
+          Client agreed to continue using the written task list and
+          review progress during the next session.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Your Final Progress Note
+      </h3>
+
+      <textarea
+        id="finalNote"
+        placeholder="Write your complete progress note here..."
+      ></textarea>
+
+      <div class="counter">
+
+        Words:
+        <span id="finalWords">
+          0
+        </span>
+
+      </div>
+
+
+      <button
+        class="success"
+        onclick="completeFinalChallenge()"
+      >
+        Complete Documentation Lab
+      </button>
+
+
+      <div
+        class="feedback"
+        id="finalFeedback"
+      ></div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ========================= -->
+  <!-- RESULTS -->
+  <!-- ========================= -->
+
+  <section
+    class="page"
+    id="results"
+  >
+
+    <div class="card intro-card">
+
+      <h2>
+        📊 Your Documentation Lab Results
+      </h2>
+
+      <div class="score-circle">
+
+        <div
+          class="score-number"
+          id="finalScore"
+        >
+          0
+        </div>
+
+        <div>
+          / 10
+        </div>
+
+      </div>
+
+
+      <p id="finalMessage"></p>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        Score Breakdown
+      </h3>
+
+      <table class="score-table">
+
+        <tr>
+
+          <th>
+            Skill
+          </th>
+
+          <th>
+            Score
+          </th>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Identifying Relevant Information
+          </td>
+
+          <td id="scorePractice1">
+            -
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Progress Note Structure
+          </td>
+
+          <td id="scorePractice2">
+            -
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Documentation QA
+          </td>
+
+          <td id="scorePractice3">
+            -
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Professional Rewrite
+          </td>
+
+          <td id="scorePractice4">
+            -
+          </td>
+
+        </tr>
+
+
+        <tr>
+
+          <td>
+            Final Documentation Challenge
+          </td>
+
+          <td id="scoreFinal">
+            -
+          </td>
+
+        </tr>
+
+      </table>
+
+    </div>
+
+
+    <div class="card">
+
+      <h3>
+        What This Lab Practiced
+      </h3>
+
+      <ul>
+
+        <li>
+          Identifying clinically relevant information
+        </li>
+
+        <li>
+          Objective documentation
+        </li>
+
+        <li>
+          Progress note structure
+        </li>
+
+        <li>
+          Documenting interventions
+        </li>
+
+        <li>
+          Documenting client response
+        </li>
+
+        <li>
+          Developing a clear plan
+        </li>
+
+        <li>
+          Quality assurance review
+        </li>
+
+      </ul>
+
+
+      <button
+        class="primary"
+        onclick="restartLab()"
+      >
+        Restart Lab
+      </button>
+
+    </div>
+
+  </section>
+
+
+</main>
+
+
+<footer>
+
+  <p>
+    Remote Social Work Mastery
+  </p>
+
+  <p>
+    Clinical Documentation Training Simulation
+  </p>
+
+</footer>
+
+
+
 <script>
 
-  const noteBox = document.getElementById("progressNote");
-  const wordCount = document.getElementById("wordCount");
+  /* ========================= */
+  /* GLOBAL SCORES */
+  /* ========================= */
 
-  noteBox.addEventListener("input", function() {
-
-    const text = noteBox.value.trim();
-
-    if (text === "") {
-      wordCount.textContent = "0";
-      return;
-    }
-
-    const words = text.split(/\s+/);
-    wordCount.textContent = words.length;
-
-  });
+  let scores = {
+    practice1: 0,
+    practice2: 0,
+    practice3: 0,
+    practice4: 0,
+    final: 0
+  };
 
 
-  function clearNote() {
+  /* ========================= */
+  /* PAGE NAVIGATION */
+  /* ========================= */
 
-    const confirmation = confirm(
-      "Are you sure you want to clear your progress note?"
-    );
-
-    if (confirmation) {
-      noteBox.value = "";
-      wordCount.textContent = "0";
-    }
-
-  }
-
-
-  function showSample() {
-
-    if (noteBox.value.trim().length < 50) {
-
-      alert(
-        "Try writing your progress note first. Once you have completed your attempt, you can view the sample answer."
-      );
-
-      return;
-
-    }
-
-    document.getElementById("sampleAnswer").style.display = "block";
-
-  }
+  const pageOrder = [
+    "welcome",
+    "instructions",
+    "practice1",
+    "practice2",
+    "practice3",
+    "practice4",
+    "finalChallenge",
+    "results"
+  ];
 
 
-  function downloadNote() {
+  function showPage(pageId) {
 
-    const note = noteBox.value.trim();
+    document.querySelectorAll(".page")
+      .forEach(page => {
+        page.classList.remove("active");
+      });
 
-    if (note === "") {
+    document
+      .getElementById(pageId)
+      .classList.add("active");
 
-      alert("Please write your progress note before downloading.");
-
-      return;
-
-    }
-
-    const content =
-`REMOTE SOCIAL WORK MASTERY
-Progress Note Practice
-
-Client: Jane A.
-Age: 29
-Service: Individual Counseling
-Format: Telehealth
-Duration: 45 minutes
-
------------------------------------
-
-STUDENT PROGRESS NOTE
-
-${note}
-
------------------------------------
-
-Practice exercise only.
-Do not use this template with real client identifying information.
-`;
-
-    const blob = new Blob([content], {
-      type: "text/plain"
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
 
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-
-    link.href = url;
-    link.download = "progress-note-practice.txt";
-
-    link.click();
-
-    URL.revokeObjectURL(url);
+    updateProgress(pageId);
 
   }
+
+
+  function updateProgress(pageId) {
+
+    const index = pageOrder.indexOf(pageId);
+
+    const percent =
+      Math.round(
+        (index / (pageOrder.length - 1)) * 100
+      );
+
+    document
+      .getElementById("progressFill")
+      .style.width = percent + "%";
+
+    document
+      .getElementById("progressPercent")
+      .textContent = percent + "%";
+
+    const labels = {
+      welcome: "Welcome",
+      instructions: "Instructions",
+      practice1: "Practice 1 of 4",
+      practice2: "Practice 2 of 4",
+      practice3: "Practice 3 of 4",
+      practice4: "Practice 4 of 4",
+      finalChallenge: "Final Challenge",
+      results: "Results"
+    };
+
+    document
+      .getElementById("progressText")
+      .textContent = labels[pageId];
+
+  }
+
+
+  /* ========================= */
+  /* PRACTICE 1 */
+  /* ========================= */
+
+  function selectChoice(button) {
+
+    const question =
+      button.dataset.question;
+
+    document
+      .querySelectorAll(
+        `[data-question="${question}"]`
+      )
+      .forEach(choice => {
+        choice.classList.remove("selected");
+      });
+
+    button.classList.add("selected");
+
+  }
+
+
+  function gradePractice1() {
+
+    const correctAnswers = {
+      q1: "include",
+      q2: "exclude",
+      q3: "clarify",
+      q4: "include",
+      q5: "clarify"
+    };
+
+    let correct = 0;
+    let answered = 0;
+
+    for (let question in correctAnswers) {
+
+      const selected =
+        document.querySelector(
+          `[data-question="${question}"].selected`
+        );
+
+      if (selected) {
+
+        answered++;
+
+        if (
+          selected.dataset.answer ===
+          correctAnswers[question]
+        ) {
+          correct++;
+        }
+
+      }
+
+    }
+
+    if (answered < 5) {
+
+      const feedback =
+        document.getElementById(
+          "practice1Feedback"
+        );
+
+      feedback.className =
+        "feedback show incorrect";
+
+      feedback.innerHTML =
+        "<strong>Almost there.</strong> Please answer all five questions.";
+
+      return;
+
+    }
+
+    scores.practice1 =
+      Math.round((correct / 5) * 2);
+
+    const feedback =
+      document.getElementById(
+        "practice1Feedback"
+      );
+
+    feedback.className =
+      "feedback show correct";
+
+    feedback.innerHTML = `
+      <h3>You scored ${correct}/5</h3>
+
+      <p>
+        <strong>1:</strong> Include — sleep can be clinically relevant.
+      </p>
+
+      <p>
+        <strong>2:</strong> Do Not Include — the handbag is not relevant
+        based on the information provided.
+      </p>
+
+      <p>
+        <strong>3:</strong> Needs Clarification — appearing quiet does not
+        support the conclusion that the client is depressed.
+      </p>
+
+      <p>
+        <strong>4:</strong> Include — the reported stressor is relevant.
+      </p>
+
+      <p>
+        <strong>5:</strong> Needs Clarification — “doing better” should be
+        explored to understand what has improved.
+      </p>
+    `;
+
+    document
+      .getElementById("practice1Next")
+      .innerHTML = `
+        <button
+          class="primary"
+          onclick="showPage('practice2')"
+        >
+          Continue to Progress Notes →
+        </button>
+      `;
+
+  }
+
+
+  /* ========================= */
+  /* WORD COUNTERS */
+  /* ========================= */
+
+  function countWords(textareaId, counterId) {
+
+    const text =
+      document
+        .getElementById(textareaId)
+        .value
+        .trim();
+
+    const count =
+      text === ""
+        ? 0
+        : text.split(/\s+/).length;
+
+    document
+      .getElementById(counterId)
+      .textContent = count;
+
+    return count;
+
+  }
+
+
+  document
+    .getElementById("practice2Note")
+    .addEventListener("input", function() {
+      countWords(
+        "practice2Note",
+        "practice2Words"
+      );
+    });
+
+
+  document
+    .getElementById("practice4Note")
+    .addEventListener("input", function() {
+      countWords(
+        "practice4Note",
+        "practice4Words"
+      );
+    });
+
+
+  document
+    .getElementById("finalNote")
+    .addEventListener("input", function() {
+      countWords(
+        "finalNote",
+        "finalWords"
+      );
+    });
+
+
+  function clearText(textareaId, counterId) {
+
+    document
+      .getElementById(textareaId)
+      .value = "";
+
+    document
+      .getElementById(counterId)
+      .textContent = "0";
+
+  }
+
+
+  /* ========================= */
+  /* PRACTICE 2 */
+  /* ========================= */
+
+  function evaluatePractice2() {
+
+    const note =
+      document
+        .getElementById("practice2Note")
+        .value
+        .trim();
+
+    const feedback =
+      document.getElementById(
+        "practice2Feedback"
+      );
+
+    if (note.length < 80) {
+
+      feedback.className =
+        "feedback show incorrect";
+
+      feedback.innerHTML =
+        "<strong>Keep going.</strong> Your progress note needs more detail before review.";
+
+      return;
+
+    }
+
+    let points = 0;
+
+    if (
+      note.toLowerCase().includes("data") ||
+      note.toLowerCase().includes("subjective")
+    ) {
+      points++;
+    }
+
+    if (
+      note.toLowerCase().includes("assessment") ||
+      note.toLowerCase().includes("objective")
+    ) {
+      points++;
+    }
+
+    if (
+      note.toLowerCase().includes("plan")
+    ) {
+      points++;
+    }
+
+    if (
+      note.toLowerCase().includes("stress") ||
+      note.toLowerCase().includes("overwhelmed")
+    ) {
+      points++;
+    }
+
+    scores.practice2 =
+      points >= 3 ? 2 : 1;
+
+    feedback.className =
+      "feedback show correct";
+
+    feedback.innerHTML = `
+      <h3>Documentation Review</h3>
+
+      <p>
+        Your note contains ${countWords(
+          "practice2Note",
+          "practice2Words"
+        )} words.
+      </p>
+
+      <p>
+        Review your note and ask yourself:
+      </p>
+
+      <ul>
+        <li>Did I document relevant client statements?</li>
+        <li>Did I identify the intervention provided?</li>
+        <li>Did I document the client's response?</li>
+        <li>Did I include a clear plan?</li>
+        <li>Did I avoid adding unsupported information?</li>
+      </ul>
+    `;
+
+  }
+
+
+  /* ========================= */
+  /* MODEL ANSWERS */
+  /* ========================= */
+
+  function showModelAnswer(id) {
+
+    document
+      .getElementById(id)
+      .classList.add("show");
+
+  }
+
+
+  /* ========================= */
+  /* PRACTICE 3 */
+  /* ========================= */
+
+  function gradePractice3() {
+
+    const correctAnswers = [
+      "vague",
+      "unprofessional",
+      "intervention",
+      "response",
+      "plan"
+    ];
+
+    const selected =
+      Array.from(
+        document.querySelectorAll(
+          '#practice3 input[type="checkbox"]:checked'
+        )
+      ).map(input => input.value);
+
+    const correctCount =
+      selected.filter(
+        value => correctAnswers.includes(value)
+      ).length;
+
+    const incorrectCount =
+      selected.filter(
+        value => !correctAnswers.includes(value)
+      ).length;
+
+    let rawScore =
+      correctCount - incorrectCount;
+
+    if (rawScore < 0) {
+      rawScore = 0;
+    }
+
+    scores.practice3 =
+      rawScore >= 4
+        ? 2
+        : 1;
+
+    const feedback =
+      document.getElementById(
+        "practice3Feedback"
+      );
+
+    feedback.className =
+      "feedback show correct";
+
+    feedback.innerHTML = `
+      <h3>QA Review Complete</h3>
+
+      <p>
+        The major issues are:
+      </p>
+
+      <ul>
+        <li>Vague wording</li>
+        <li>Subjective or unprofessional language</li>
+        <li>Unclear intervention</li>
+        <li>Insufficient client response</li>
+        <li>Weak or missing plan</li>
+      </ul>
+
+      <p>
+        “Client's boss is terrible” is a subjective statement.
+        “We talked about her problems” does not clearly describe the
+        intervention. “She seemed better” is vague and does not explain
+        the client's response.
+      </p>
+    `;
+
+    document
+      .getElementById("practice3Next")
+      .innerHTML = `
+        <button
+          class="primary"
+          onclick="showPage('practice4')"
+        >
+          Fix the Note →
+        </button>
+      `;
+
+  }
+
+
+  /* ========================= */
+  /* PRACTICE 4 */
+  /* ========================= */
+
+  function evaluatePractice4() {
+
+    const note =
+      document
+        .getElementById("practice4Note")
+        .value
+        .trim();
+
+    const feedback =
+      document.getElementById(
+        "practice4Feedback"
+      );
+
+    if (note.length < 60) {
+
+      feedback.className =
+        "feedback show incorrect";
+
+      feedback.innerHTML =
+        "<strong>Try again.</strong> Rewrite the note with enough detail to describe the concern, intervention, response, and plan.";
+
+      return;
+
+    }
+
+    let points = 0;
+
+    const lowerNote =
+      note.toLowerCase();
+
+    if (
+      lowerNote.includes("stress") ||
+      lowerNote.includes("work")
+    ) {
+      points++;
+    }
+
+    if (
+      lowerNote.includes("explored") ||
+      lowerNote.includes("discussed") ||
+      lowerNote.includes("reviewed")
+    ) {
+      points++;
+    }
+
+    if (
+      lowerNote.includes("client") &&
+      (
+        lowerNote.includes("participated") ||
+        lowerNote.includes("engaged") ||
+        lowerNote.includes("identified")
+      )
+    ) {
+      points++;
+    }
+
+    if (
+      lowerNote.includes("agreed") ||
+      lowerNote.includes("plan") ||
+      lowerNote.includes("next session")
+    ) {
+      points++;
+    }
+
+    scores.practice4 =
+      points >= 3
+        ? 2
+        : 1;
+
+    feedback.className =
+      "feedback show correct";
+
+    feedback.innerHTML = `
+      <h3>Rewrite Review</h3>
+
+      <p>
+        Good documentation should replace vague statements with
+        specific descriptions of:
+      </p>
+
+      <ul>
+        <li>The client's reported concern</li>
+        <li>The intervention or service provided</li>
+        <li>The client's response or participation</li>
+        <li>The next step or plan</li>
+      </ul>
+    `;
+
+  }
+
+
+  /* ========================= */
+  /* FINAL CHALLENGE */
+  /* ========================= */
+
+  function completeFinalChallenge() {
+
+    const note =
+      document
+        .getElementById("finalNote")
+        .value
+        .trim();
+
+    const feedback =
+      document.getElementById(
+        "finalFeedback"
+      );
+
+    if (note.length < 100) {
+
+      feedback.className =
+        "feedback show incorrect";
+
+      feedback.innerHTML =
+        "<strong>Your final note needs more detail.</strong> Aim to document the client's concern, relevant information, intervention, response, and plan.";
+
+      return;
+
+    }
+
+    const lowerNote =
+      note.toLowerCase();
+
+    let points = 0;
+
+    if (
+      lowerNote.includes("data") ||
+      lowerNote.includes("subjective")
+    ) {
+      points++;
+    }
+
+    if (
+      lowerNote.includes("assessment") ||
+      lowerNote.includes("objective")
+    ) {
+      points++;
+    }
+
+    if (
+      lowerNote.includes("plan")
+    ) {
+      points++;
+    }
+
+    if (
+      lowerNote.includes("stress") ||
+      lowerNote.includes("financial")
+    ) {
+      points++;
+    }
+
+    if (
+      lowerNote.includes("task") ||
+      lowerNote.includes("priorit")
+    ) {
+      points++;
+    }
+
+    scores.final =
+      points >= 4
+        ? 2
+        : 1;
+
+    feedback.className =
+      "feedback show correct";
+
+    feedback.innerHTML = `
+      <h3>Final Challenge Completed!</h3>
+
+      <p>
+        Your documentation has been recorded locally in this training
+        session.
+      </p>
+
+      <button
+        class="primary"
+        onclick="showResults()"
+      >
+        View My Results →
+      </button>
+    `;
+
+  }
+
+
+  /* ========================= */
+  /* RESULTS */
+  /* ========================= */
+
+  function showResults() {
+
+    const total =
+      scores.practice1 +
+      scores.practice2 +
+      scores.practice3 +
+      scores.practice4 +
+      scores.final;
+
+    document
+      .getElementById("finalScore")
+      .textContent = total;
+
+    document
+      .getElementById("scorePractice1")
+      .textContent =
+      scores.practice1 + "/2";
+
+    document
+      .getElementById("scorePractice2")
+      .textContent =
+      scores.practice2 + "/2";
+
+    document
+      .getElementById("scorePractice3")
+      .textContent =
+      scores.practice3 + "/2";
+
+    document
+      .getElementById("scorePractice4")
+      .textContent =
+      scores.practice4 + "/2";
+
+    document
+      .getElementById("scoreFinal")
+      .textContent =
+      scores.final + "/2";
+
+    let message = "";
+
+    if (total >= 9) {
+
+      message =
+        "Excellent work. You demonstrated strong awareness of relevant information, documentation quality, and progress note structure.";
+
+    }
+
+    else if (total >= 7) {
+
+      message =
+        "Good work. You have a solid foundation. Review the feedback and continue practicing objective language and complete documentation.";
+
+    }
+
+    else {
+
+      message =
+        "You are building your documentation skills. Review the model answers and try the lab again to strengthen your clinical documentation process.";
+
+    }
+
+    document
+      .getElementById("finalMessage")
+      .textContent = message;
+
+    showPage("results");
+
+  }
+
+
+  /* ========================= */
+  /* RESTART */
+  /* ========================= */
+
+  function restartLab() {
+
+    scores = {
+      practice1: 0,
+      practice2: 0,
+      practice3: 0,
+      practice4: 0,
+      final: 0
+    };
+
+    document
+      .querySelectorAll(".selected")
+      .forEach(item => {
+        item.classList.remove("selected");
+      });
+
+    document
+      .querySelectorAll(
+        'input[type="checkbox"]'
+      )
+      .forEach(item => {
+        item.checked = false;
+      });
+
+    [
+      "practice2Note",
+      "practice4Note",
+      "finalNote"
+    ].forEach(id => {
+      document.getElementById(id).value = "";
+    });
+
+    [
+      "practice2Words",
+      "practice4Words",
+      "finalWords"
+    ].forEach(id => {
+      document.getElementById(id).textContent = "0";
+    });
+
+    document
+      .querySelectorAll(".feedback")
+      .forEach(item => {
+        item.classList.remove("show");
+      });
+
+    document
+      .getElementById("practice1Next")
+      .innerHTML = "";
+
+    document
+      .getElementById("practice3Next")
+      .innerHTML = "";
+
+    showPage("welcome");
+
+  }
+
+
+  updateProgress("welcome");
 
 </script>
 
