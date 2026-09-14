@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Note Practice</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .header {
+      background: #1f3c88;
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      margin-top: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .client-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .info-box {
+      background: #f1f4f9;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .scenario {
+      line-height: 1.7;
+      background: #fff8e6;
+      padding: 20px;
+      border-left: 5px solid #f0b429;
+      border-radius: 6px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 300px;
+      padding: 15px;
+      font-size: 16px;
+      line-height: 1.6;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+
+    .instructions li {
+      margin-bottom: 10px;
+    }
+
+    .counter {
+      text-align: right;
+      color: #666;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    button {
+      border: none;
+      padding: 12px 18px;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-right: 8px;
+      margin-top: 10px;
+    }
+
+    .primary {
+      background: #1f3c88;
+      color: white;
+    }
+
+    .secondary {
+      background: #ddd;
+      color: #333;
+    }
+
+    .success {
+      background: #2e7d32;
+      color: white;
+    }
+
+    .sample {
+      display: none;
+      background: #eef7ee;
+      border-left: 5px solid #2e7d32;
+      padding: 20px;
+      line-height: 1.7;
+      margin-top: 20px;
+    }
+
+    .warning {
+      color: #9a6700;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .client-info {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        margin: 10px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Progress Note Practice</h1>
+    <p>Remote Social Work Documentation Exercise</p>
+  </div>
+
+  <!-- CLIENT INFORMATION -->
+  <div class="card">
+    <h2>1. Client Information</h2>
+
+    <div class="client-info">
+
+      <div class="info-box">
+        <strong>Client:</strong><br>
+        Jane A.
+      </div>
+
+      <div class="info-box">
+        <strong>Age:</strong><br>
+        29
+      </div>
+
+      <div class="info-box">
+        <strong>Service:</strong><br>
+        Individual Counseling
+      </div>
+
+      <div class="info-box">
+        <strong>Session:</strong><br>
+        Follow-up Session
+      </div>
+
+      <div class="info-box">
+        <strong>Format:</strong><br>
+        Telehealth
+      </div>
+
+      <div class="info-box">
+        <strong>Duration:</strong><br>
+        45 minutes
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- SCENARIO -->
+  <div class="card">
+    <h2>2. Session Scenario</h2>
+
+    <div class="scenario">
+
+      <p>
+        Jane attended her scheduled 45-minute telehealth session.
+        She reported feeling "overwhelmed" during the past week because
+        of increased responsibilities at work and difficulty balancing
+        work and family responsibilities.
+      </p>
+
+      <p>
+        Jane reported that she has been sleeping approximately 5–6 hours
+        per night and has noticed difficulty concentrating at work.
+        She stated that she has been using deep breathing techniques
+        discussed during the previous session and found them somewhat helpful.
+      </p>
+
+      <p>
+        During the session, the social worker explored Jane's current
+        stressors and discussed time-management strategies. The social
+        worker also reviewed coping skills and encouraged Jane to continue
+        practicing deep breathing exercises.
+      </p>
+
+      <p>
+        Jane was engaged throughout the session and demonstrated an
+        understanding of the strategies discussed. She agreed to identify
+        two manageable tasks each day and practice deep breathing at least
+        once daily before the next session.
+      </p>
+
+    </div>
+  </div>
+
+
+  <!-- INSTRUCTIONS -->
+  <div class="card instructions">
+
+    <h2>3. Your Assignment</h2>
+
+    <p>
+      Using the information provided above, write a professional
+      progress note.
+    </p>
+
+    <h3>Remember:</h3>
+
+    <ul>
+      <li>Document objectively and professionally.</li>
+      <li>Separate client statements from your observations.</li>
+      <li>Focus on clinically relevant information.</li>
+      <li>Avoid unnecessary personal details.</li>
+      <li>Document interventions provided.</li>
+      <li>Document the client's response to the intervention.</li>
+      <li>Include the plan or next steps.</li>
+      <li>Do not add information that is not included in the scenario.</li>
+    </ul>
+
+    <p class="warning">
+      ⚠️ Practice exercise: Do not include identifying information
+      about real clients in this activity.
+    </p>
+
+  </div>
+
+
+  <!-- NOTE WRITING -->
+  <div class="card">
+
+    <h2>4. Write Your Progress Note</h2>
+
+    <p>
+      You may use either <strong>DAP</strong> or <strong>SOAP</strong>
+      format.
+    </p>
+
+    <textarea
+      id="progressNote"
+      placeholder="Begin writing your progress note here...">
+    </textarea>
+
+    <div class="counter">
+      Words: <span id="wordCount">0</span>
+    </div>
+
+    <button class="primary" onclick="downloadNote()">
+      Download My Note
+    </button>
+
+    <button class="secondary" onclick="clearNote()">
+      Clear
+    </button>
+
+    <button class="success" onclick="showSample()">
+      Show Sample Answer
+    </button>
+
+    <div id="sampleAnswer" class="sample">
+
+      <h3>Sample Progress Note – DAP Format</h3>
+
+      <p>
+        <strong>Data:</strong> Client attended scheduled 45-minute
+        telehealth session. Client reported feeling overwhelmed due to
+        increased work responsibilities and difficulty balancing work
+        and family responsibilities. Client reported sleeping
+        approximately 5–6 hours per night and experiencing difficulty
+        concentrating at work. Client reported using previously discussed
+        deep breathing techniques and finding them somewhat helpful.
+      </p>
+
+      <p>
+        <strong>Assessment:</strong> Client presented as engaged throughout
+        the session and demonstrated understanding of strategies discussed.
+        Client continues to experience stress related to work and family
+        responsibilities.
+      </p>
+
+      <p>
+        <strong>Plan:</strong> Social worker reviewed coping skills and
+        discussed time-management strategies. Client agreed to identify
+        two manageable tasks each day and practice deep breathing at least
+        once daily before the next session. Continue to monitor reported
+        stress and functioning at follow-up.
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  const noteBox = document.getElementById("progressNote");
+  const wordCount = document.getElementById("wordCount");
+
+  noteBox.addEventListener("input", function() {
+
+    const text = noteBox.value.trim();
+
+    if (text === "") {
+      wordCount.textContent = "0";
+      return;
+    }
+
+    const words = text.split(/\s+/);
+    wordCount.textContent = words.length;
+
+  });
+
+
+  function clearNote() {
+
+    const confirmation = confirm(
+      "Are you sure you want to clear your progress note?"
+    );
+
+    if (confirmation) {
+      noteBox.value = "";
+      wordCount.textContent = "0";
+    }
+
+  }
+
+
+  function showSample() {
+
+    if (noteBox.value.trim().length < 50) {
+
+      alert(
+        "Try writing your progress note first. Once you have completed your attempt, you can view the sample answer."
+      );
+
+      return;
+
+    }
+
+    document.getElementById("sampleAnswer").style.display = "block";
+
+  }
+
+
+  function downloadNote() {
+
+    const note = noteBox.value.trim();
+
+    if (note === "") {
+
+      alert("Please write your progress note before downloading.");
+
+      return;
+
+    }
+
+    const content =
+`REMOTE SOCIAL WORK MASTERY
+Progress Note Practice
+
+Client: Jane A.
+Age: 29
+Service: Individual Counseling
+Format: Telehealth
+Duration: 45 minutes
+
+-----------------------------------
+
+STUDENT PROGRESS NOTE
+
+${note}
+
+-----------------------------------
+
+Practice exercise only.
+Do not use this template with real client identifying information.
+`;
+
+    const blob = new Blob([content], {
+      type: "text/plain"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = "progress-note-practice.txt";
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+  }
+
+</script>
+
+</body>
+</html>
